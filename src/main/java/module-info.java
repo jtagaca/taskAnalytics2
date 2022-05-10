@@ -13,6 +13,8 @@ module jtagaca.taskanalytics_ {
     requires java.net.http;
     requires java.desktop;
     requires org.json;
+    requires org.apache.httpcomponents.httpclient;
+    requires httpcore;
 
     opens jtagaca.taskanalytics_ to javafx.fxml;
     exports jtagaca.taskanalytics_;

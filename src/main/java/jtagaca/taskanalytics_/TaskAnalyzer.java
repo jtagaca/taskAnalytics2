@@ -10,7 +10,7 @@ import java.io.IOException;
 public class TaskAnalyzer extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TaskAnalyzer.class.getResource("Login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskAnalyzer.class.getResource("RegisterView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);

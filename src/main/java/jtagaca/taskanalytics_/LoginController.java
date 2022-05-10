@@ -2,10 +2,15 @@
 package jtagaca.taskanalytics_;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
     @FXML
@@ -72,6 +77,17 @@ public class LoginController {
 //        stage.setScene(scene);
 //    }
 
+    @FXML
+    private void onRegisterClicked() throws IOException {
+//        send to RegisterView
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskAnalyzer.class.getResource("RegisterView.fxml"));
+//       QUESTION error here
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        RegisterController reigisterController = fxmlLoader.getController();
+                Stage stage = (Stage) txtUserName.getScene().getWindow();
+
+                stage.setScene(scene);
+    }
     private boolean validateForm() {
         boolean nameIsValid = txtUserName.getText().matches("\\w{2,9}[a-zA-Z0-9]$");
         if (nameIsValid) {

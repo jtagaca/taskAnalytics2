@@ -17,7 +17,7 @@
                 <Label text="Alphanumeric Only" textFill="RED" />
             </children>
         </VBox>
-        <Button id="btnRegister" fx:id="btnLogin" mnemonicParsing="false" onAction="#onLoginClicked" text="Register" />
+        <Button id="btnRegister" fx:id="btnLogin" mnemonicParsing="false" onAction="#onRegisterClicked" text="Register" />
       <Button id="btnLogin" fx:id="btnLogin1" layoutX="209.0" layoutY="195.0" mnemonicParsing="false" onAction="#onLoginClicked" text="Login" />
     </children>
 </VBox>

@@ -5,6 +5,8 @@ import javafx.scene.control.TextField;
 
 import javax.swing.*;
 
+import java.io.UnsupportedEncodingException;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class RegisterController {
@@ -28,9 +30,13 @@ public class RegisterController {
         }
         return true;
     }
-     private void onRegisterClicked() {
+
+    @FXML
+     private void onRegisterClicked() throws UnsupportedEncodingException {
             if (!validateForm()) return;
-            APIBridge.LoginUser(registerUserName.getText(), registerPassword.getText());
+//            QUESTION, unable to make a call
+            APIBridge.Register(registerUserName.getText(), registerPassword.getText());
+
 
 
     }
