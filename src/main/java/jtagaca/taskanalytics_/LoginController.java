@@ -1,6 +1,8 @@
 
 package jtagaca.taskanalytics_;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -52,7 +54,7 @@ public class LoginController {
 //            new object
 
 //            I need TODO object and the userName
-            JSONObject tempUser = new JSONObject();
+            JsonObject tempUser = new JsonObject();
             tempUser = APIBridge.getUser(txtUserName.getText(), txtPassword.getText());
 //            User user = new User();
             txtUserName.setText("");

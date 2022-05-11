@@ -17,6 +17,7 @@ module jtagaca.taskanalytics_ {
     requires httpclient;
     requires okhttp3;
     requires json;
+    requires com.google.gson;
 
     opens jtagaca.taskanalytics_ to javafx.fxml;
     exports jtagaca.taskanalytics_;

@@ -1,19 +1,19 @@
 package jtagaca.taskanalytics_;
 
 
+import com.google.gson.JsonObject;
 import okhttp3.*;
-import org.json.JSONObject;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import org.json.JSONStringer;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class APIBridge {
     public static String url = "http://localhost:9004/index.php";
     private int UserID;
+    public static int user_id;
 //    static OkHttpClient httpClient = new OkHttpClient();
 //    httpClient.setConnectTimeout(15, TimeUnit.SECONDS);
 
@@ -82,6 +82,8 @@ public class APIBridge {
             if (res.contains("success")) {
                 System.out.println("Login Successful");
 //                JSONParser parser = new JSONParser();
+                JsonObject jobj = new Gson().fromJson(res, JsonObject.class);
+                user_id = jobj.get("user_id").getAsInt();
 //                JSONObject json = (JSONObject) parser.parse(stringToParse);
 
                 msgbox("Login Successful");
@@ -101,9 +103,10 @@ public class APIBridge {
 
     }
 
-    public static JSONObject getUser (String username, String password) {
+    public static JsonObject getUser (String username, String password) {
         RequestBody formBody = new FormBody.Builder()
                 .add("GetAllTodo", "true")
+                .add("user_id", String.valueOf(user_id))
                 .build();
 
         Request request = new Request.Builder()
@@ -120,11 +123,14 @@ public class APIBridge {
             String res = response.body().string();
             if (res.contains("success")) {
 //                new json object
-                JSONObject user = new JSONObject(response.body());
                 response.body().close();
+                JsonObject jobj = new Gson().fromJson(res, JsonObject.class);
+                jobj.addProperty("username", username);
+                return jobj;
 
-                return user;
-
+            } else if ( res.contains("no todos")      ) {
+                msgbox("No Todos");
+                return null;
             }
 
         } catch (IOException e) {
