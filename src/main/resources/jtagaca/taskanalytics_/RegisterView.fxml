@@ -9,11 +9,12 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <children>
-        <TextField fx:id="registerUserName"  promptText="User Name" />
-        <PasswordField fx:id="registerPassword"  promptText="Password" />
+        <TextField fx:id="registerUserName" promptText="User Name" />
+        <PasswordField fx:id="registerPassword" promptText="Password" />
         <VBox fx:id="vboxMessage" alignment="CENTER">
 
         </VBox>
         <Button id="btnSubmitRegister" fx:id="btnSubmitRegister" mnemonicParsing="false" onAction="#onRegisterClicked" text="Register" />
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#navigateToLogin" text="Back" />
     </children>
 </VBox>

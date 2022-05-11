@@ -12,9 +12,11 @@ module jtagaca.taskanalytics_ {
     requires com.almasb.fxgl.all;
     requires java.net.http;
     requires java.desktop;
-    requires org.json;
-    requires org.apache.httpcomponents.httpclient;
     requires httpcore;
+    requires com.fasterxml.jackson.databind;
+    requires httpclient;
+    requires okhttp3;
+    requires json;
 
     opens jtagaca.taskanalytics_ to javafx.fxml;
     exports jtagaca.taskanalytics_;

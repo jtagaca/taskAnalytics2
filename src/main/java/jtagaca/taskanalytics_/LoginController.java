@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -43,20 +44,21 @@ public class LoginController {
 
 
     @FXML
-    private void onLoginClicked() {
+    private void onLoginClicked() throws IOException {
 
-//        if (!validateForm()) return;
-//        try {
-//            Socket socket = new Socket("localhost", 3390);
-//            Client client = new Client(socket, txtUserName.getText());
-//
-////             what does this do?
-//            client.sendMessage(txtUserName.getText());
-//            openChatView(client);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-    }
+        if (APIBridge.Login(txtUserName.getText(), txtPassword.getText())) {
+
+//            Build up the user using a get variable from the APIBridge
+//            new object
+
+//            I need TODO object and the userName
+            JSONObject tempUser = new JSONObject();
+            tempUser = APIBridge.getUser(txtUserName.getText(), txtPassword.getText());
+//            User user = new User();
+            txtUserName.setText("");
+            txtPassword.setText("");
+
+        }
 
 //    private void openChatView(Client client) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(FXChatApplication.class.getResource("chat-view.fxml"));
@@ -77,6 +79,7 @@ public class LoginController {
 //        stage.setScene(scene);
 //    }
 
+    }
     @FXML
     private void onRegisterClicked() throws IOException {
 //        send to RegisterView

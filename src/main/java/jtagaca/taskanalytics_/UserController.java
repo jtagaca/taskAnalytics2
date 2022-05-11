@@ -12,7 +12,13 @@ public class UserController {
     @FXML
     Button btnController;
 
-    StopWatchApp stopWatchApp = new StopWatchApp();
+    StopWatch stopWatchApp = new StopWatch();
+
+    @FXML
+    public void onButtonClicked() {
+//        txtAreaView.setText(stopWatchApp.getTime());
+        stopWatchApp.start();
+    }
 
 
 
