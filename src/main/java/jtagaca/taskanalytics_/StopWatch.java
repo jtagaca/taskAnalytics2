@@ -2,13 +2,9 @@ package jtagaca.taskanalytics_;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
@@ -20,12 +16,21 @@ class StopWatch extends BorderPane {
     private int hours;
     private int minutes;
     private int seconds;
+    private int allInSeconds;
+    private boolean isRunning;
     private Timeline timeline;
-
+    @FXML
+    Label timerLabel;
     public StopWatch() {
+    }
+
+    public StopWatch(Label timerLabel) {
         hours = 0;
         minutes = 0;
         seconds = 0;
+        allInSeconds = 0;
+        this.timerLabel = timerLabel;
+
 
         // set up the time display
 //        tTime = new Text();
@@ -67,8 +72,10 @@ class StopWatch extends BorderPane {
     }
 
     public void start() {
+        isRunning = true;
         KeyFrame kf = new KeyFrame(Duration.millis(1000), e -> {
             seconds++;
+            allInSeconds++;
             setTime();
             System.out.println(seconds);
         });
@@ -78,8 +85,13 @@ class StopWatch extends BorderPane {
         timeline.play();
     }
 
-    public void pause() {
+    public void stop() {
         timeline.pause();
+        isRunning = false;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
     }
 
     public void resume() {
@@ -91,7 +103,12 @@ class StopWatch extends BorderPane {
         hours = 0;
         minutes = 0;
         seconds = 0;
+        allInSeconds = 0;
         setTime();
+    }
+
+    public int getAllInSeconds() {
+        return allInSeconds;
     }
 
     public void setTime() {
@@ -112,9 +129,21 @@ class StopWatch extends BorderPane {
         String m = minutes >= 10 ? String.valueOf(minutes) : "0" + String.valueOf(minutes);
         String s = seconds >= 10 ? String.valueOf(seconds) : "0" + String.valueOf(seconds);
 
-//        tTime.setText(h + ":" + m + ":" + s);
+        this.timerLabel.setText(h + ":" + m + ":" + s);
     }
     public String getTime() {
         return hours + ":" + minutes + ":" + seconds;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public int getSeconds() {
+        return seconds;
     }
 }

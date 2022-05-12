@@ -145,6 +145,46 @@ public class APIBridge {
 
     }
 
+    public static boolean updateTodo(String todoName, float elapsedTime) {
+        RequestBody formBody = new FormBody.Builder()
+                .add("UpdateTodo", "true")
+                .add("user_id", String.valueOf(user_id))
+                .add("todo", todoName)
+                .add("timespent", String.valueOf(elapsedTime))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("User-Agent", "OkHttp Bot")
+                .post(formBody)
+                .build();
+
+        try (Response response = httpClient.newCall(request).execute()) {
+
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            // Get response body
+            String res = response.body().string();
+            if (res.contains("success")) {
+                System.out.println("Update Successful");
+                msgbox("Update Successful");
+                response.body().close();
+                return true;
+            } else {
+                System.out.println("Update Failed");
+                msgbox("Update Failed");
+                response.body().close();
+
+                return false;
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
     private void sendGet() throws Exception {
 
         Request request = new Request.Builder()

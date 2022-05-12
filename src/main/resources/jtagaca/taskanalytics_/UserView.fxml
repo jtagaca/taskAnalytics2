@@ -6,9 +6,30 @@
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.UserController">
    <children>
       <ComboBox layoutX="15.0" layoutY="33.0" prefWidth="90.0" promptText="choose"  fx:id="todoCombo"  onAction="#comboChanged" />
-      <Label fx:id="TimerLabel" text="Label" />
-      <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" text="Start" VBox.vgrow="NEVER" />
-      <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" text="Logout" VBox.vgrow="NEVER" />
+      <Label fx:id="Chosen" text="Chosen" />
+      <Label fx:id="ChosenTxt" text="" />
+      <Label  text="Timer" />
+
+      <Label fx:id="TimerLabel" text="" />
+      <Button contentDisplay="CENTER" minWidth="-Infinity"
+              onAction="#onButtonStart"
+              fx:id="startButton"
+              mnemonicParsing="false" text="Start" VBox.vgrow="NEVER" />
+      <Button contentDisplay="CENTER"
+              onAction="#onButtonStop"
+              fx:id="stopButton"
+              minWidth="-Infinity" mnemonicParsing="false" text="Stop" VBox.vgrow="NEVER" />
+
+      <Button contentDisplay="CENTER" minWidth="-Infinity"
+              onAction="#Logout"
+              mnemonicParsing="false" text="Logout" VBox.vgrow="NEVER" />
+
+      <Button contentDisplay="CENTER" minWidth="-Infinity"
+              onAction="#Save"
+              mnemonicParsing="false" text="Save" VBox.vgrow="NEVER" />
+      <Button contentDisplay="CENTER" minWidth="-Infinity"
+              onAction="#AddNewTodo"
+              mnemonicParsing="false" text="Add New Todo" VBox.vgrow="NEVER" />
 
    </children>
 </VBox>

@@ -26,6 +26,8 @@ public class User {
     }
 
 
-
+    public Todo[] getTodo() {
+        return todos;
+    }
 }
 

@@ -36,6 +36,13 @@ public class LoginController {
     @FXML
     Button btnRegister;
 
+    public static void setUser(Object o) {
+        user = (User) o;
+    }
+
+
+
+
 //    a socket is basically a way to talk to one other device to another
 
 
