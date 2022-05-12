@@ -6,9 +6,12 @@ import okhttp3.*;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class APIBridge {
     public static String url = "http://localhost:9004/index.php";
@@ -84,6 +87,7 @@ public class APIBridge {
 //                JSONParser parser = new JSONParser();
                 JsonObject jobj = new Gson().fromJson(res, JsonObject.class);
                 user_id = jobj.get("user_id").getAsInt();
+
 //                JSONObject json = (JSONObject) parser.parse(stringToParse);
 
                 msgbox("Login Successful");
@@ -103,7 +107,7 @@ public class APIBridge {
 
     }
 
-    public static JsonObject getUser (String username, String password) {
+    public static JSONArray getUser (String username) {
         RequestBody formBody = new FormBody.Builder()
                 .add("GetAllTodo", "true")
                 .add("user_id", String.valueOf(user_id))
@@ -121,12 +125,11 @@ public class APIBridge {
 
             // Get response body
             String res = response.body().string();
-            if (res.contains("success")) {
+            if (res.contains("todo")) {
+                JSONArray jsonArray = new JSONArray(res);;
 //                new json object
                 response.body().close();
-                JsonObject jobj = new Gson().fromJson(res, JsonObject.class);
-                jobj.addProperty("username", username);
-                return jobj;
+                return jsonArray;
 
             } else if ( res.contains("no todos")      ) {
                 msgbox("No Todos");
@@ -134,6 +137,8 @@ public class APIBridge {
             }
 
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
             throw new RuntimeException(e);
         }
         return null;
