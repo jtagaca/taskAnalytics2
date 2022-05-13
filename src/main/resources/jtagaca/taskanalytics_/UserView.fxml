@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.UserController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.UserController">
    <children>
       <Label fx:id="ChosenTxt" text="" />
-      <Label text="Timer" />
 
       <Label fx:id="TimerLabel" text="" />
-      <Button fx:id="startButton" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonStart" text="Start" VBox.vgrow="NEVER" />
-      <Button fx:id="stopButton" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonStop" text="Stop" VBox.vgrow="NEVER" />
       <GridPane>
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="361.0" minWidth="10.0" prefWidth="361.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="239.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="todoCombo" onAction="#comboChanged" prefHeight="24.0" prefWidth="251.0" promptText="choose" />
-            <Label fx:id="Chosen" prefHeight="16.0" prefWidth="251.0" text="Chosen" GridPane.columnIndex="1" />
+            <ComboBox fx:id="todoCombo" onAction="#comboChanged" prefHeight="24.0" prefWidth="363.0" promptText="choose">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></ComboBox>
+            <Label fx:id="Chosen" alignment="CENTER" prefHeight="16.0" prefWidth="232.0" text="" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Label>
          </children>
       </GridPane>
+      <BorderPane prefHeight="132.0" prefWidth="600.0">
+         <top>
+            <Label alignment="CENTER" prefHeight="41.0" prefWidth="160.0" text="Timer" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <Button fx:id="startButton" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonStart" prefHeight="24.0" prefWidth="193.0" text="Start" BorderPane.alignment="CENTER" />
+         </center>
+         <bottom>
+            <Button fx:id="stopButton" contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonStop" prefHeight="24.0" prefWidth="150.0" text="Stop" BorderPane.alignment="CENTER" />
+         </bottom>
+         <left>
+      
+            <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#Save" prefHeight="24.0" prefWidth="181.0" text="Save" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#ViewAnalytics" text="View Task Analytics" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
 
       <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#Logout" text="Logout" VBox.vgrow="NEVER" />
-
-      <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#Save" text="Save" VBox.vgrow="NEVER" />
       <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#AddNewTodo" text="Add New Todo" VBox.vgrow="NEVER" />
-      <Button contentDisplay="CENTER" minWidth="-Infinity" mnemonicParsing="false" onAction="#ViewAnalytics" text="View Task Analytics" VBox.vgrow="NEVER" />
    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>
