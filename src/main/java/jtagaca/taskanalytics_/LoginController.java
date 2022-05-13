@@ -48,11 +48,6 @@ public class LoginController {
 
     //    is socket shared ?
 //    THis happens whenever we start the app
-    @FXML
-    private void initialize() {
-        vboxMessage.setManaged(false);
-        vboxMessage.setVisible(false);
-    }
 
 
 
@@ -65,28 +60,38 @@ public class LoginController {
 //            Build up the user using a get variable from the APIBridge
 //            new object
 
+            if (tempUser!=null) {
+                Todo [] todos = new Todo[tempUser.length()];
+                for(int i = 0; i < tempUser.length(); i++){
+                    JSONObject jobj = tempUser.getJSONObject(i);
+                    if (jobj.get("timespent").toString().equals("null")){
+                        todos[i] = new Todo(jobj.get("todo").toString(), 0, null);
+                    } else {
+                        todos[i] = (new Todo(jobj.get("todo").toString(), Float.parseFloat(jobj.get("timespent").toString()),jobj.get("date").toString()));
+                    }
+                }
+
+                user= new User(txtUserName.getText(), todos);
+            }
+            else
+            {
+                user= new User(txtUserName.getText(), null);
+            }
+
+            txtUserName.setText("");
+            txtPassword.setText("");
 //            I need TODO object and the userName
 
 
 //            User user = new User();
 //            navigate to Userview
-            Todo [] todos = new Todo[tempUser.length()];
-            for(int i = 0; i < tempUser.length(); i++){
-                JSONObject jobj = tempUser.getJSONObject(i);
-                if (jobj.get("timespent").toString().equals("null")){
-                    todos[i] = new Todo(jobj.get("todo").toString(), 0, null);
-                } else {
-                    todos[i] = (new Todo(jobj.get("todo").toString(), Float.parseFloat(jobj.get("timespent").toString()),jobj.get("date").toString()));
-                }
-            }
-          user= new User(txtUserName.getText(), todos);
-            txtUserName.setText("");
-            txtPassword.setText("");
+
             FXMLLoader fxmlLoader = new FXMLLoader(TaskAnalyzer.class.getResource("UserView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 240);
             Stage stage = (Stage) txtUserName.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+
 
         }
 
@@ -120,6 +125,7 @@ public class LoginController {
                 Stage stage = (Stage) txtUserName.getScene().getWindow();
 
                 stage.setScene(scene);
+                stage.show();
     }
 
     public static User getUser() {

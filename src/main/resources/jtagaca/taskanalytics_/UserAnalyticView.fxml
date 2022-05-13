@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.UserAnalyticView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.UserAnalyticView">
    <children>
-      <StackedBarChart fx:id="stackChart" prefHeight="400.0" prefWidth="600.0" title="Todo Time Spent by date">
+      <Button layoutX="196.0" layoutY="374.0" mnemonicParsing="false" onAction="#backNavigate" text="Back" />
+      <StackedBarChart fx:id="stackChart" prefHeight="343.0" prefWidth="600.0" title="Todo Time Spent by date">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

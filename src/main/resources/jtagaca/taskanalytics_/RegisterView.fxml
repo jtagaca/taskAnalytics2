@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="298.0" prefWidth="452.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.RegisterController">
+<VBox alignment="CENTER" prefHeight="298.0" prefWidth="452.0" spacing="20.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jtagaca.taskanalytics_.RegisterController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -14,7 +14,7 @@
         <VBox fx:id="vboxMessage" alignment="CENTER">
 
         </VBox>
-        <Button id="btnSubmitRegister" fx:id="btnSubmitRegister" mnemonicParsing="false" onAction="#onRegisterClicked" text="Register" />
-      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#navigateToLogin" text="Back" />
+        <Button id="btnSubmitRegister" fx:id="btnSubmitRegister" mnemonicParsing="false" onAction="#onRegisterClicked" style="-fx-background-color: yellow;" text="Register" textFill="#0d0a0a" />
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#navigateToLogin" style="-fx-background-color: yellow;" text="Back" />
     </children>
 </VBox>

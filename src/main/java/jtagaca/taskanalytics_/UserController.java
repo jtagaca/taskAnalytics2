@@ -15,8 +15,12 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.paint.Stop;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Optional;
@@ -25,7 +29,7 @@ import java.util.ResourceBundle;
 public class UserController implements Initializable {
 
     float elapsedTime ;
-    User tempUser = new User();
+    User user = new User();
 //    @FXML
 //    publi
         ObservableList<String> todoList = FXCollections.observableArrayList();
@@ -94,26 +98,68 @@ public class UserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        tempUser =LoginController.getUser();
-        todos= tempUser.getTodo();
+//        tempUser =LoginController.getUser();
+
+
+        JSONArray tempUser = new JSONArray();
+        tempUser= APIBridge.getUser(LoginController.getUser().getUsername());
+//            Build up the user using a get variable from the APIBridge
+//            new object
+
+        if (tempUser!=null) {
+            Todo [] todos = new Todo[tempUser.length()];
+            for(int i = 0; i < tempUser.length(); i++){
+                JSONObject jobj = null;
+                try {
+                    jobj = tempUser.getJSONObject(i);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    if (jobj.get("timespent").toString().equals("null")){
+                        try {
+                            todos[i] = new Todo(jobj.get("todo").toString(), 0, null);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        todos[i] = (new Todo(jobj.get("todo").toString(), Float.parseFloat(jobj.get("timespent").toString()),jobj.get("date").toString()));
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            user= new User(LoginController.getUser().getUsername(), todos);
+        }
+        else
+        {
+            user= new User(LoginController.getUser().getUsername(), null);
+        }
+
+
+
+        if (user.getTodos() != null) {
 //
 //        make a unique set of todos
 
 
-        HashMap<String, Integer> todoMap = new HashMap<>();
-        for (int i = 0; i < todos.length; i++) {
-            todoMap.put(todos[i].getTitle(), i);
-        }
-        for (int i = 0; i < todoMap.keySet().toArray().length; i++) {
-            todoList.add(todoMap.keySet().toArray()[i].toString());
+//           make a new array
+            todos = user.getTodo();
+            HashMap<String, Integer> todoMap = new HashMap<>();
+            for (int i = 0; i < todos.length; i++) {
+                todoMap.put(todos[i].getTitle(), i);
+            }
+            for (int i = 0; i < todoMap.keySet().toArray().length; i++) {
+                todoList.add(todoMap.keySet().toArray()[i].toString());
+            }
+
+
+
         }
         todoCombo.setItems(todoList);
         stopButton.setDisable(true);
         elapsedTime = 0;
-
-
-
-
     }
 
 

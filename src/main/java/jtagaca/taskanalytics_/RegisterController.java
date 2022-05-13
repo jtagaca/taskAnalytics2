@@ -30,7 +30,7 @@ public class RegisterController {
     private boolean validateForm() {
         boolean nameIsValid = registerUserName.getText().matches("\\w{2,9}[a-zA-Z0-9]$");
         if (!nameIsValid) {
-            msgbox("Please enter a valid username with at least a length of 2 or more characters");
+            msgbox("Please enter a valid username with at least a length of 2 or more characters with at least 2 numbers or letters");
             return false;
         }
         return true;
@@ -38,7 +38,7 @@ public class RegisterController {
 
     @FXML
      private void onRegisterClicked() throws IOException {
-            if (!validateForm()) return;
+
 //            QUESTION, unable to make a call
             if (APIBridge.Register(registerUserName.getText(), registerPassword.getText()) == true) {
                 registerUserName.setText("");

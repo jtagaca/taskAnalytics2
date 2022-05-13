@@ -14,7 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 public class APIBridge {
-    public static String url = "http://localhost:9004/index.php";
+    public static String url = "https://cs.csub.edu/~jtagaca/appdev/index.php";
     private int UserID;
     public static int user_id;
 //    static OkHttpClient httpClient = new OkHttpClient();
@@ -125,14 +125,14 @@ public class APIBridge {
 
             // Get response body
             String res = response.body().string();
-            if (res.contains("todo")) {
+            System.out.println(res);
+            if (!res.contains("error")) {
                 JSONArray jsonArray = new JSONArray(res);;
 //                new json object
                 response.body().close();
                 return jsonArray;
 
             } else if ( res.contains("no todos")      ) {
-                msgbox("No Todos");
                 return null;
             }
 
