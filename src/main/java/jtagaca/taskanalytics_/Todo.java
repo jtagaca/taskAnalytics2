@@ -18,4 +18,9 @@ public class Todo {
     public float getTimespent() {
         return timespent;
     }
+
+
+    public Object getDate() {
+        return date;
+    }
 }

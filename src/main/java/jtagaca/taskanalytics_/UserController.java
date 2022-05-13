@@ -18,6 +18,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -95,8 +96,16 @@ public class UserController implements Initializable {
 
         tempUser =LoginController.getUser();
         todos= tempUser.getTodo();
+//
+//        make a unique set of todos
+
+
+        HashMap<String, Integer> todoMap = new HashMap<>();
         for (int i = 0; i < todos.length; i++) {
-            todoList.add(String.valueOf(todos[i].getTitle()));
+            todoMap.put(todos[i].getTitle(), i);
+        }
+        for (int i = 0; i < todoMap.keySet().toArray().length; i++) {
+            todoList.add(todoMap.keySet().toArray()[i].toString());
         }
         todoCombo.setItems(todoList);
         stopButton.setDisable(true);
@@ -148,5 +157,14 @@ public class UserController implements Initializable {
             todoList.add(result.get());
 
         }
+    }
+
+    public void ViewAnalytics(ActionEvent actionEvent) throws IOException {
+//        navigate to the UserAnalyticView
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskAnalyzer.class.getResource("UserAnalyticView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Stage stage = (Stage) startButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
