@@ -10,7 +10,7 @@ This full-stack project consists of both a PHP backend and a Java front end. MyS
 
 ## Challenges
 
-The challenges for this project were that I had only three months of experience with Java and PHP. Therefore I was not proficient in their use. However, as you can see, even though this is my first app, it still provides functionality. Moreover, it solves problems for time management when consumers use it.
+The fact that I had minimal experience with Java and PHP made this project difficult. However, as you can see, it still works despite my lack of experience. This is due to my research and study of Java and PHP, which I accomplished by watching tutorials and reading documentation on how to implement specific features.
 
 <p align="center" width="100%">
 <img
